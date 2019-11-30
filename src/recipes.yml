@@ -1,0 +1,43 @@
+#
+# example: 
+# 标题随意, 用于辨别, 不要重复
+# - 'STEEL_INGOT' 
+# 第一行为要修改的粘液科技物品的ID
+# - 'MC{IRON_INGOT}|MC{IRON_INGOT}|MC{IRON_INGOT}'
+# - 'null|null|null'
+# - 'null|null|null'
+# 第二、三、四行写新合成表
+# - 'RT{OVEN}'
+# 第五行写新的合成方式
+#
+# 物品表达式: 
+#   'MC{<ITEM_ID>}' 表示一个原版物品, 必须是一个被包含在enum中的ID
+#   'SF{<ITEM_ID>}' 表示一个粘液科技物品, 其中 'ITEM_ID' 是一个物品ID
+#
+# 可用的合成方式有:
+#   MULTIBLOCK (多方块需要外接其他插件)
+#   ARMOR_FORGE
+#   GRIND_STONE
+#   MOB_DROP (生物掉落需要外接其他插件)
+#   ORE_CRUSHER
+#   COMPRESSOR
+#   PRESSURE_CHAMBER
+#   HEATED_PRESSURE_CHAMBER
+#   OVEN
+#   MAGIC_WORKBENCH
+#   ORE_WASHER
+#   ENHANCED_CRAFTING_TABLE
+#   JUICER
+#   ANCIENT_ALTAR
+#   SHAPED_RECIPE
+#   SHAPELESS_RECIPE
+#   FURNACE
+#   NULL
+#
+
+example: 
+  - 'POWER_CRYSTAL'
+  - 'MC{DIAMOND}|MC{REDSTONE}|MC{DIAMOND}'
+  - 'MC{REDSTONE}|MC{DIAMOND}|MC{REDSTONE}'
+  - 'MC{DIAMOND}|MC{REDSTONE}|MC{DIAMOND}'
+  - 'RT{ENHANCED_CRAFTING_TABLE}'

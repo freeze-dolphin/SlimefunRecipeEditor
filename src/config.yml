@@ -1,0 +1,10 @@
+
+debug: false
+# [boolean] 是否开启调试模式 (可能会刷屏控制台)
+
+enable: false
+# [boolean] 开启此项后此插件才会工作
+
+recipes: 
+# [string] 合成表配置文件名
+- 'recipes.yml'

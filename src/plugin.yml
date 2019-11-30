@@ -1,0 +1,7 @@
+name: SlimefunRecipeEditor
+main: me.Freeze_Dolphin.sfre.Main
+version: 1.0
+
+depend: [CS-CoreLib, Slimefun]
+
+author: Freeze_Dolphin

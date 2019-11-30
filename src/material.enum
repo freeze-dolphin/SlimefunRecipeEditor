@@ -1,0 +1,1245 @@
+package org.bukkit;
+
+import com.google.common.collect.Maps;
+import java.lang.reflect.Constructor;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Map;
+import org.apache.commons.lang.Validate;
+import org.bukkit.material.MaterialData;
+
+public static enum Material {
+  AIR(0, 0),
+  STONE(1),
+  GRASS(2),
+  DIRT(3),
+  COBBLESTONE(4),
+  WOOD(5, org.bukkit.material.Wood.class),
+  SAPLING(6, org.bukkit.material.Sapling.class),
+  BEDROCK(7),
+  WATER(8, MaterialData.class),
+  STATIONARY_WATER(9, MaterialData.class),
+  LAVA(10, MaterialData.class),
+  STATIONARY_LAVA(11, MaterialData.class),
+  SAND(12),
+  GRAVEL(13),
+  GOLD_ORE(14),
+  IRON_ORE(15),
+  COAL_ORE(16),
+  LOG(17, org.bukkit.material.Tree.class),
+  LEAVES(18, org.bukkit.material.Leaves.class),
+  SPONGE(19),
+  GLASS(20),
+  LAPIS_ORE(21),
+  LAPIS_BLOCK(22),
+  DISPENSER(23, org.bukkit.material.Dispenser.class),
+  SANDSTONE(24, org.bukkit.material.Sandstone.class),
+  NOTE_BLOCK(25),
+  BED_BLOCK(26, org.bukkit.material.Bed.class),
+  POWERED_RAIL(27, org.bukkit.material.PoweredRail.class),
+  DETECTOR_RAIL(28, org.bukkit.material.DetectorRail.class),
+  PISTON_STICKY_BASE(29, org.bukkit.material.PistonBaseMaterial.class),
+  WEB(30),
+  LONG_GRASS(31, org.bukkit.material.LongGrass.class),
+  DEAD_BUSH(32),
+  PISTON_BASE(33, org.bukkit.material.PistonBaseMaterial.class),
+  PISTON_EXTENSION(34, org.bukkit.material.PistonExtensionMaterial.class),
+  WOOL(35, org.bukkit.material.Wool.class),
+  PISTON_MOVING_PIECE(36),
+  YELLOW_FLOWER(37),
+  RED_ROSE(38),
+  BROWN_MUSHROOM(39),
+  RED_MUSHROOM(40),
+  GOLD_BLOCK(41),
+  IRON_BLOCK(42),
+  DOUBLE_STEP(43, org.bukkit.material.Step.class),
+  STEP(44, org.bukkit.material.Step.class),
+  BRICK(45),
+  TNT(46),
+  BOOKSHELF(47),
+  MOSSY_COBBLESTONE(48),
+  OBSIDIAN(49),
+  TORCH(50, org.bukkit.material.Torch.class),
+  FIRE(51),
+  MOB_SPAWNER(52),
+  WOOD_STAIRS(53, org.bukkit.material.Stairs.class),
+  CHEST(54, org.bukkit.material.Chest.class),
+  REDSTONE_WIRE(55, org.bukkit.material.RedstoneWire.class),
+  DIAMOND_ORE(56),
+  DIAMOND_BLOCK(57),
+  WORKBENCH(58),
+  CROPS(59, org.bukkit.material.Crops.class),
+  SOIL(60, MaterialData.class),
+  FURNACE(61, org.bukkit.material.Furnace.class),
+  BURNING_FURNACE(62, org.bukkit.material.Furnace.class),
+  SIGN_POST(63, 64, org.bukkit.material.Sign.class),
+  WOODEN_DOOR(64, org.bukkit.material.Door.class),
+  LADDER(65, org.bukkit.material.Ladder.class),
+  RAILS(66, org.bukkit.material.Rails.class),
+  COBBLESTONE_STAIRS(67, org.bukkit.material.Stairs.class),
+  WALL_SIGN(68, 64, org.bukkit.material.Sign.class),
+  LEVER(69, org.bukkit.material.Lever.class),
+  STONE_PLATE(70, org.bukkit.material.PressurePlate.class),
+  IRON_DOOR_BLOCK(71, org.bukkit.material.Door.class),
+  WOOD_PLATE(72, org.bukkit.material.PressurePlate.class),
+  REDSTONE_ORE(73),
+  GLOWING_REDSTONE_ORE(74),
+  REDSTONE_TORCH_OFF(75, org.bukkit.material.RedstoneTorch.class),
+  REDSTONE_TORCH_ON(76, org.bukkit.material.RedstoneTorch.class),
+  STONE_BUTTON(77, org.bukkit.material.Button.class),
+  SNOW(78),
+  ICE(79),
+  SNOW_BLOCK(80),
+  CACTUS(81, MaterialData.class),
+  CLAY(82),
+  SUGAR_CANE_BLOCK(83, MaterialData.class),
+  JUKEBOX(84),
+  FENCE(85),
+  PUMPKIN(86, org.bukkit.material.Pumpkin.class),
+  NETHERRACK(87),
+  SOUL_SAND(88),
+  GLOWSTONE(89),
+  PORTAL(90),
+  JACK_O_LANTERN(91, org.bukkit.material.Pumpkin.class),
+  CAKE_BLOCK(92, 64, org.bukkit.material.Cake.class),
+  DIODE_BLOCK_OFF(93, org.bukkit.material.Diode.class),
+  DIODE_BLOCK_ON(94, org.bukkit.material.Diode.class),
+  STAINED_GLASS(95),
+  TRAP_DOOR(96, org.bukkit.material.TrapDoor.class),
+  MONSTER_EGGS(97, org.bukkit.material.MonsterEggs.class),
+  SMOOTH_BRICK(98, org.bukkit.material.SmoothBrick.class),
+  HUGE_MUSHROOM_1(99, org.bukkit.material.Mushroom.class),
+  HUGE_MUSHROOM_2(100, org.bukkit.material.Mushroom.class),
+  IRON_FENCE(101),
+  THIN_GLASS(102),
+  MELON_BLOCK(103),
+  PUMPKIN_STEM(104, MaterialData.class),
+  MELON_STEM(105, MaterialData.class),
+  VINE(106, org.bukkit.material.Vine.class),
+  FENCE_GATE(107, org.bukkit.material.Gate.class),
+  BRICK_STAIRS(108, org.bukkit.material.Stairs.class),
+  SMOOTH_STAIRS(109, org.bukkit.material.Stairs.class),
+  MYCEL(110),
+  WATER_LILY(111),
+  NETHER_BRICK(112),
+  NETHER_FENCE(113),
+  NETHER_BRICK_STAIRS(114, org.bukkit.material.Stairs.class),
+  NETHER_WARTS(115, org.bukkit.material.NetherWarts.class),
+  ENCHANTMENT_TABLE(116),
+  BREWING_STAND(117, MaterialData.class),
+  CAULDRON(118, org.bukkit.material.Cauldron.class),
+  ENDER_PORTAL(119),
+  ENDER_PORTAL_FRAME(120),
+  ENDER_STONE(121),
+  DRAGON_EGG(122),
+  REDSTONE_LAMP_OFF(123),
+  REDSTONE_LAMP_ON(124),
+  WOOD_DOUBLE_STEP(125, org.bukkit.material.Wood.class),
+  WOOD_STEP(126, org.bukkit.material.WoodenStep.class),
+  COCOA(127, org.bukkit.material.CocoaPlant.class),
+  SANDSTONE_STAIRS(128, org.bukkit.material.Stairs.class),
+  EMERALD_ORE(129),
+  ENDER_CHEST(130, org.bukkit.material.EnderChest.class),
+  TRIPWIRE_HOOK(131, org.bukkit.material.TripwireHook.class),
+  TRIPWIRE(132, org.bukkit.material.Tripwire.class),
+  EMERALD_BLOCK(133),
+  SPRUCE_WOOD_STAIRS(134, org.bukkit.material.Stairs.class),
+  BIRCH_WOOD_STAIRS(135, org.bukkit.material.Stairs.class),
+  JUNGLE_WOOD_STAIRS(136, org.bukkit.material.Stairs.class),
+  COMMAND(137, org.bukkit.material.Command.class),
+  BEACON(138),
+  COBBLE_WALL(139),
+  FLOWER_POT(140, org.bukkit.material.FlowerPot.class),
+  CARROT(141, org.bukkit.material.Crops.class),
+  POTATO(142, org.bukkit.material.Crops.class),
+  WOOD_BUTTON(143, org.bukkit.material.Button.class),
+  SKULL(144, org.bukkit.material.Skull.class),
+  ANVIL(145),
+  TRAPPED_CHEST(146, org.bukkit.material.Chest.class),
+  GOLD_PLATE(147),
+  IRON_PLATE(148),
+  REDSTONE_COMPARATOR_OFF(149, org.bukkit.material.Comparator.class),
+  REDSTONE_COMPARATOR_ON(150, org.bukkit.material.Comparator.class),
+  DAYLIGHT_DETECTOR(151),
+  REDSTONE_BLOCK(152),
+  QUARTZ_ORE(153),
+  HOPPER(154, org.bukkit.material.Hopper.class),
+  QUARTZ_BLOCK(155),
+  QUARTZ_STAIRS(156, org.bukkit.material.Stairs.class),
+  ACTIVATOR_RAIL(157, org.bukkit.material.PoweredRail.class),
+  DROPPER(158, org.bukkit.material.Dispenser.class),
+  STAINED_CLAY(159),
+  STAINED_GLASS_PANE(160),
+  LEAVES_2(161, org.bukkit.material.Leaves.class),
+  LOG_2(162, org.bukkit.material.Tree.class),
+  ACACIA_STAIRS(163, org.bukkit.material.Stairs.class),
+  DARK_OAK_STAIRS(164, org.bukkit.material.Stairs.class),
+  SLIME_BLOCK(165),
+  BARRIER(166),
+  IRON_TRAPDOOR(167, org.bukkit.material.TrapDoor.class),
+  PRISMARINE(168),
+  SEA_LANTERN(169),
+  HAY_BLOCK(170),
+  CARPET(171),
+  HARD_CLAY(172),
+  COAL_BLOCK(173),
+  PACKED_ICE(174),
+  DOUBLE_PLANT(175),
+  STANDING_BANNER(176, org.bukkit.material.Banner.class),
+  WALL_BANNER(177, org.bukkit.material.Banner.class),
+  DAYLIGHT_DETECTOR_INVERTED(178),
+  RED_SANDSTONE(179),
+  RED_SANDSTONE_STAIRS(180, org.bukkit.material.Stairs.class),
+  DOUBLE_STONE_SLAB2(181),
+  STONE_SLAB2(182),
+  SPRUCE_FENCE_GATE(183, org.bukkit.material.Gate.class),
+  BIRCH_FENCE_GATE(184, org.bukkit.material.Gate.class),
+  JUNGLE_FENCE_GATE(185, org.bukkit.material.Gate.class),
+  DARK_OAK_FENCE_GATE(186, org.bukkit.material.Gate.class),
+  ACACIA_FENCE_GATE(187, org.bukkit.material.Gate.class),
+  SPRUCE_FENCE(188),
+  BIRCH_FENCE(189),
+  JUNGLE_FENCE(190),
+  DARK_OAK_FENCE(191),
+  ACACIA_FENCE(192),
+  SPRUCE_DOOR(193, org.bukkit.material.Door.class),
+  BIRCH_DOOR(194, org.bukkit.material.Door.class),
+  JUNGLE_DOOR(195, org.bukkit.material.Door.class),
+  ACACIA_DOOR(196, org.bukkit.material.Door.class),
+  DARK_OAK_DOOR(197, org.bukkit.material.Door.class),
+  END_ROD(198),
+  CHORUS_PLANT(199),
+  CHORUS_FLOWER(200),
+  PURPUR_BLOCK(201),
+  PURPUR_PILLAR(202),
+  PURPUR_STAIRS(203, org.bukkit.material.Stairs.class),
+  PURPUR_DOUBLE_SLAB(204),
+  PURPUR_SLAB(205),
+  END_BRICKS(206),
+  BEETROOT_BLOCK(207, org.bukkit.material.Crops.class),
+  GRASS_PATH(208),
+  END_GATEWAY(209),
+  COMMAND_REPEATING(210, org.bukkit.material.Command.class),
+  COMMAND_CHAIN(211, org.bukkit.material.Command.class),
+  FROSTED_ICE(212),
+  MAGMA(213),
+  NETHER_WART_BLOCK(214),
+  RED_NETHER_BRICK(215),
+  BONE_BLOCK(216),
+  STRUCTURE_VOID(217),
+  OBSERVER(218, org.bukkit.material.Observer.class),
+  WHITE_SHULKER_BOX(219, 1),
+  ORANGE_SHULKER_BOX(220, 1),
+  MAGENTA_SHULKER_BOX(221, 1),
+  LIGHT_BLUE_SHULKER_BOX(222, 1),
+  YELLOW_SHULKER_BOX(223, 1),
+  LIME_SHULKER_BOX(224, 1),
+  PINK_SHULKER_BOX(225, 1),
+  GRAY_SHULKER_BOX(226, 1),
+  SILVER_SHULKER_BOX(227, 1),
+  CYAN_SHULKER_BOX(228, 1),
+  PURPLE_SHULKER_BOX(229, 1),
+  BLUE_SHULKER_BOX(230, 1),
+  BROWN_SHULKER_BOX(231, 1),
+  GREEN_SHULKER_BOX(232, 1),
+  RED_SHULKER_BOX(233, 1),
+  BLACK_SHULKER_BOX(234, 1),
+  WHITE_GLAZED_TERRACOTTA(235),
+  ORANGE_GLAZED_TERRACOTTA(236),
+  MAGENTA_GLAZED_TERRACOTTA(237),
+  LIGHT_BLUE_GLAZED_TERRACOTTA(238),
+  YELLOW_GLAZED_TERRACOTTA(239),
+  LIME_GLAZED_TERRACOTTA(240),
+  PINK_GLAZED_TERRACOTTA(241),
+  GRAY_GLAZED_TERRACOTTA(242),
+  SILVER_GLAZED_TERRACOTTA(243),
+  CYAN_GLAZED_TERRACOTTA(244),
+  PURPLE_GLAZED_TERRACOTTA(245),
+  BLUE_GLAZED_TERRACOTTA(246),
+  BROWN_GLAZED_TERRACOTTA(247),
+  GREEN_GLAZED_TERRACOTTA(248),
+  RED_GLAZED_TERRACOTTA(249),
+  BLACK_GLAZED_TERRACOTTA(250),
+  CONCRETE(251),
+  CONCRETE_POWDER(252),
+  STRUCTURE_BLOCK(255),
+  IRON_SPADE(
+    256, 1, 250),
+  IRON_PICKAXE(257, 1, 250),
+  IRON_AXE(258, 1, 250),
+  FLINT_AND_STEEL(259, 1, 64),
+  APPLE(260),
+  BOW(261, 1, 384),
+  ARROW(262),
+  COAL(263, org.bukkit.material.Coal.class),
+  DIAMOND(264),
+  IRON_INGOT(265),
+  GOLD_INGOT(266),
+  IRON_SWORD(267, 1, 250),
+  WOOD_SWORD(268, 1, 59),
+  WOOD_SPADE(269, 1, 59),
+  WOOD_PICKAXE(270, 1, 59),
+  WOOD_AXE(271, 1, 59),
+  STONE_SWORD(272, 1, 131),
+  STONE_SPADE(273, 1, 131),
+  STONE_PICKAXE(274, 1, 131),
+  STONE_AXE(275, 1, 131),
+  DIAMOND_SWORD(276, 1, 1561),
+  DIAMOND_SPADE(277, 1, 1561),
+  DIAMOND_PICKAXE(278, 1, 1561),
+  DIAMOND_AXE(279, 1, 1561),
+  STICK(280),
+  BOWL(281),
+  MUSHROOM_SOUP(282, 1),
+  GOLD_SWORD(283, 1, 32),
+  GOLD_SPADE(284, 1, 32),
+  GOLD_PICKAXE(285, 1, 32),
+  GOLD_AXE(286, 1, 32),
+  STRING(287),
+  FEATHER(288),
+  SULPHUR(289),
+  WOOD_HOE(290, 1, 59),
+  STONE_HOE(291, 1, 131),
+  IRON_HOE(292, 1, 250),
+  DIAMOND_HOE(293, 1, 1561),
+  GOLD_HOE(294, 1, 32),
+  SEEDS(295),
+  WHEAT(296),
+  BREAD(297),
+  LEATHER_HELMET(298, 1, 55),
+  LEATHER_CHESTPLATE(299, 1, 80),
+  LEATHER_LEGGINGS(300, 1, 75),
+  LEATHER_BOOTS(301, 1, 65),
+  CHAINMAIL_HELMET(302, 1, 165),
+  CHAINMAIL_CHESTPLATE(303, 1, 240),
+  CHAINMAIL_LEGGINGS(304, 1, 225),
+  CHAINMAIL_BOOTS(305, 1, 195),
+  IRON_HELMET(306, 1, 165),
+  IRON_CHESTPLATE(307, 1, 240),
+  IRON_LEGGINGS(308, 1, 225),
+  IRON_BOOTS(309, 1, 195),
+  DIAMOND_HELMET(310, 1, 363),
+  DIAMOND_CHESTPLATE(311, 1, 528),
+  DIAMOND_LEGGINGS(312, 1, 495),
+  DIAMOND_BOOTS(313, 1, 429),
+  GOLD_HELMET(314, 1, 77),
+  GOLD_CHESTPLATE(315, 1, 112),
+  GOLD_LEGGINGS(316, 1, 105),
+  GOLD_BOOTS(317, 1, 91),
+  FLINT(318),
+  PORK(319),
+  GRILLED_PORK(320),
+  PAINTING(321),
+  GOLDEN_APPLE(322),
+  SIGN(323, 16),
+  WOOD_DOOR(324, 64),
+  BUCKET(325, 16),
+  WATER_BUCKET(326, 1),
+  LAVA_BUCKET(327, 1),
+  MINECART(328, 1),
+  SADDLE(329, 1),
+  IRON_DOOR(330, 64),
+  REDSTONE(331),
+  SNOW_BALL(332, 16),
+  BOAT(333, 1),
+  LEATHER(334),
+  MILK_BUCKET(335, 1),
+  CLAY_BRICK(336),
+  CLAY_BALL(337),
+  SUGAR_CANE(338),
+  PAPER(339),
+  BOOK(340),
+  SLIME_BALL(341),
+  STORAGE_MINECART(342, 1),
+  POWERED_MINECART(343, 1),
+  EGG(344, 16),
+  COMPASS(345),
+  FISHING_ROD(346, 1, 64),
+  WATCH(347),
+  GLOWSTONE_DUST(348),
+  RAW_FISH(349),
+  COOKED_FISH(350),
+  INK_SACK(351, org.bukkit.material.Dye.class),
+  BONE(352),
+  SUGAR(353),
+  CAKE(354, 1),
+  BED(355, 1),
+  DIODE(356),
+  COOKIE(357),
+  MAP(
+    
+    358, MaterialData.class),
+  SHEARS(359, 1, 238),
+  MELON(360),
+  PUMPKIN_SEEDS(361),
+  MELON_SEEDS(362),
+  RAW_BEEF(363),
+  COOKED_BEEF(364),
+  RAW_CHICKEN(365),
+  COOKED_CHICKEN(366),
+  ROTTEN_FLESH(367),
+  ENDER_PEARL(368, 16),
+  BLAZE_ROD(369),
+  GHAST_TEAR(370),
+  GOLD_NUGGET(371),
+  NETHER_STALK(372),
+  POTION(373, 1, MaterialData.class),
+  GLASS_BOTTLE(374),
+  SPIDER_EYE(375),
+  FERMENTED_SPIDER_EYE(376),
+  BLAZE_POWDER(377),
+  MAGMA_CREAM(378),
+  BREWING_STAND_ITEM(379),
+  CAULDRON_ITEM(380),
+  EYE_OF_ENDER(381),
+  SPECKLED_MELON(382),
+  MONSTER_EGG(383, 64, org.bukkit.material.SpawnEgg.class),
+  EXP_BOTTLE(384, 64),
+  FIREBALL(385, 64),
+  BOOK_AND_QUILL(386, 1),
+  WRITTEN_BOOK(387, 16),
+  EMERALD(388, 64),
+  ITEM_FRAME(389),
+  FLOWER_POT_ITEM(390),
+  CARROT_ITEM(391),
+  POTATO_ITEM(392),
+  BAKED_POTATO(393),
+  POISONOUS_POTATO(394),
+  EMPTY_MAP(395),
+  GOLDEN_CARROT(396),
+  SKULL_ITEM(397),
+  CARROT_STICK(398, 1, 25),
+  NETHER_STAR(399),
+  PUMPKIN_PIE(400),
+  FIREWORK(401),
+  FIREWORK_CHARGE(402),
+  ENCHANTED_BOOK(403, 1),
+  REDSTONE_COMPARATOR(404),
+  NETHER_BRICK_ITEM(405),
+  QUARTZ(406),
+  EXPLOSIVE_MINECART(407, 1),
+  HOPPER_MINECART(408, 1),
+  PRISMARINE_SHARD(409),
+  PRISMARINE_CRYSTALS(410),
+  RABBIT(411),
+  COOKED_RABBIT(412),
+  RABBIT_STEW(413, 1),
+  RABBIT_FOOT(414),
+  RABBIT_HIDE(415),
+  ARMOR_STAND(416, 16),
+  IRON_BARDING(417, 1),
+  GOLD_BARDING(418, 1),
+  DIAMOND_BARDING(419, 1),
+  LEASH(420),
+  NAME_TAG(421),
+  COMMAND_MINECART(422, 1),
+  MUTTON(423),
+  COOKED_MUTTON(424),
+  BANNER(425, 16),
+  END_CRYSTAL(426),
+  SPRUCE_DOOR_ITEM(427),
+  BIRCH_DOOR_ITEM(428),
+  JUNGLE_DOOR_ITEM(429),
+  ACACIA_DOOR_ITEM(430),
+  DARK_OAK_DOOR_ITEM(431),
+  CHORUS_FRUIT(432),
+  CHORUS_FRUIT_POPPED(433),
+  BEETROOT(434),
+  BEETROOT_SEEDS(435),
+  BEETROOT_SOUP(436, 1),
+  DRAGONS_BREATH(437),
+  SPLASH_POTION(438, 1),
+  SPECTRAL_ARROW(439),
+  TIPPED_ARROW(440),
+  LINGERING_POTION(441, 1),
+  SHIELD(442, 1, 336),
+  ELYTRA(443, 1, 431),
+  BOAT_SPRUCE(444, 1),
+  BOAT_BIRCH(445, 1),
+  BOAT_JUNGLE(446, 1),
+  BOAT_ACACIA(447, 1),
+  BOAT_DARK_OAK(448, 1),
+  TOTEM(449, 1),
+  SHULKER_SHELL(450),
+  IRON_NUGGET(452),
+  KNOWLEDGE_BOOK(453, 1),
+  GOLD_RECORD(2256, 1),
+  GREEN_RECORD(2257, 1),
+  RECORD_3(2258, 1),
+  RECORD_4(2259, 1),
+  RECORD_5(2260, 1),
+  RECORD_6(2261, 1),
+  RECORD_7(2262, 1),
+  RECORD_8(2263, 1),
+  RECORD_9(2264, 1),
+  RECORD_10(2265, 1),
+  RECORD_11(2266, 1),
+  RECORD_12(2267, 1);
+  
+  private final int id;
+  
+  private final Constructor<? extends MaterialData> ctor;
+  
+  private static Material[] byId;
+  
+  private static final Map<String, Material> BY_NAME;
+  
+  private final int maxStack;
+  
+  private final short durability;
+  
+  static  {
+    byId = new Material[383];
+    BY_NAME = Maps.newHashMap();
+    byte b;
+    int i;
+    Material[] arrayOfMaterial;
+    for (i = arrayOfMaterial = values().length, b = 0; b < i; ) {
+      material = arrayOfMaterial[b];
+      if (byId.length > material.id) {
+        byId[material.id] = material;
+      } else {
+        byId = (Material[])Arrays.copyOfRange(byId, 0, material.id + 2);
+        byId[material.id] = material;
+      } 
+      BY_NAME.put(material.name(), material);
+      b++;
+    } 
+  }
+  
+  Material(int id, int stack, int durability, Class<? extends MaterialData> data) {
+    this.id = id;
+    this.durability = (short)durability;
+    this.maxStack = stack;
+    try {
+      this.ctor = data.getConstructor(new Class[] { int.class, byte.class });
+    } catch (NoSuchMethodException ex) {
+      throw new AssertionError(ex);
+    } catch (SecurityException ex) {
+      throw new AssertionError(ex);
+    } 
+  }
+  
+  @Deprecated
+  public int getId() { return this.id; }
+  
+  public int getMaxStackSize() { return this.maxStack; }
+  
+  public short getMaxDurability() { return this.durability; }
+  
+  public Class<? extends MaterialData> getData() { return this.ctor.getDeclaringClass(); }
+  
+  @Deprecated
+  public MaterialData getNewData(byte raw) {
+    try {
+      return (MaterialData)this.ctor.newInstance(new Object[] { Integer.valueOf(this.id), Byte.valueOf(raw) });
+    } catch (InstantiationException ex) {
+      Throwable t = ex.getCause();
+      if (t instanceof RuntimeException)
+        throw (RuntimeException)t; 
+      if (t instanceof Error)
+        throw (Error)t; 
+      throw new AssertionError(t);
+    } catch (Throwable t) {
+      throw new AssertionError(t);
+    } 
+  }
+  
+  public boolean isBlock() { return (this.id < 256); }
+  
+  public boolean isEdible() {
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 259:
+      case 281:
+      case 296:
+      case 318:
+      case 319:
+      case 321:
+      case 348:
+      case 349:
+      case 356:
+      case 359:
+      case 362:
+      case 363:
+      case 364:
+      case 365:
+      case 366:
+      case 374:
+      case 390:
+      case 391:
+      case 392:
+      case 393:
+      case 395:
+      case 399:
+      case 410:
+      case 411:
+      case 412:
+      case 422:
+      case 423:
+      case 431:
+      case 433:
+      case 435:
+        return true;
+    } 
+    return false;
+  }
+  
+  @Deprecated
+  public static Material getMaterial(int id) {
+    if (byId.length > id && id >= 0)
+      return byId[id]; 
+    return null;
+  }
+  
+  public static Material getMaterial(String name) { return (Material)BY_NAME.get(name); }
+  
+  public static Material matchMaterial(String name) {
+    Validate.notNull(name, "Name cannot be null");
+    Material result = null;
+    try {
+      result = getMaterial(Integer.parseInt(name));
+    } catch (NumberFormatException numberFormatException) {}
+    if (result == null) {
+      String filtered = name.toUpperCase(Locale.ENGLISH);
+      filtered = filtered.replaceAll("\\s+", "_").replaceAll("\\W", "");
+      result = (Material)BY_NAME.get(filtered);
+    } 
+    return result;
+  }
+  
+  public boolean isRecord() { return (this.id >= GOLD_RECORD.id && this.id <= RECORD_12.id); }
+  
+  public boolean isSolid() {
+    if (!isBlock() || this.id == 0)
+      return false; 
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 8:
+      case 13:
+      case 14:
+      case 15:
+      case 16:
+      case 17:
+      case 18:
+      case 19:
+      case 20:
+      case 21:
+      case 22:
+      case 23:
+      case 24:
+      case 25:
+      case 26:
+      case 27:
+      case 30:
+      case 34:
+      case 35:
+      case 36:
+      case 37:
+      case 42:
+      case 43:
+      case 44:
+      case 45:
+      case 46:
+      case 47:
+      case 48:
+      case 49:
+      case 50:
+      case 53:
+      case 54:
+      case 55:
+      case 57:
+      case 58:
+      case 59:
+      case 61:
+      case 62:
+      case 63:
+      case 64:
+      case 65:
+      case 68:
+      case 69:
+      case 71:
+      case 72:
+      case 73:
+      case 74:
+      case 75:
+      case 80:
+      case 81:
+      case 82:
+      case 83:
+      case 85:
+      case 86:
+      case 87:
+      case 88:
+      case 89:
+      case 90:
+      case 92:
+      case 93:
+      case 96:
+      case 97:
+      case 98:
+      case 99:
+      case 100:
+      case 101:
+      case 102:
+      case 103:
+      case 104:
+      case 108:
+      case 109:
+      case 110:
+      case 111:
+      case 113:
+      case 114:
+      case 115:
+      case 117:
+      case 118:
+      case 119:
+      case 121:
+      case 122:
+      case 123:
+      case 124:
+      case 125:
+      case 126:
+      case 127:
+      case 129:
+      case 130:
+      case 131:
+      case 134:
+      case 135:
+      case 136:
+      case 137:
+      case 138:
+      case 139:
+      case 140:
+      case 146:
+      case 147:
+      case 148:
+      case 149:
+      case 152:
+      case 153:
+      case 154:
+      case 155:
+      case 156:
+      case 157:
+      case 159:
+      case 160:
+      case 161:
+      case 162:
+      case 163:
+      case 164:
+      case 165:
+      case 166:
+      case 167:
+      case 168:
+      case 169:
+      case 170:
+      case 171:
+      case 173:
+      case 174:
+      case 175:
+      case 177:
+      case 178:
+      case 179:
+      case 180:
+      case 181:
+      case 182:
+      case 183:
+      case 184:
+      case 185:
+      case 186:
+      case 187:
+      case 188:
+      case 189:
+      case 190:
+      case 191:
+      case 192:
+      case 193:
+      case 194:
+      case 195:
+      case 196:
+      case 197:
+      case 198:
+      case 202:
+      case 203:
+      case 204:
+      case 205:
+      case 206:
+      case 207:
+      case 209:
+      case 211:
+      case 212:
+      case 213:
+      case 214:
+      case 215:
+      case 216:
+      case 217:
+      case 219:
+      case 220:
+      case 221:
+      case 222:
+      case 223:
+      case 224:
+      case 225:
+      case 226:
+      case 227:
+      case 228:
+      case 229:
+      case 230:
+      case 231:
+      case 232:
+      case 233:
+      case 234:
+      case 235:
+      case 236:
+      case 237:
+      case 238:
+      case 239:
+      case 240:
+      case 241:
+      case 242:
+      case 243:
+      case 244:
+      case 245:
+      case 246:
+      case 247:
+      case 248:
+      case 249:
+      case 250:
+      case 251:
+      case 252:
+      case 253:
+      case 254:
+        return true;
+    } 
+    return false;
+  }
+  
+  public boolean isTransparent() {
+    if (!isBlock())
+      return false; 
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 1:
+      case 7:
+      case 28:
+      case 29:
+      case 32:
+      case 33:
+      case 38:
+      case 39:
+      case 40:
+      case 41:
+      case 51:
+      case 52:
+      case 56:
+      case 60:
+      case 66:
+      case 67:
+      case 70:
+      case 76:
+      case 77:
+      case 78:
+      case 79:
+      case 84:
+      case 91:
+      case 94:
+      case 95:
+      case 105:
+      case 106:
+      case 107:
+      case 112:
+      case 116:
+      case 120:
+      case 128:
+      case 132:
+      case 133:
+      case 141:
+      case 142:
+      case 143:
+      case 144:
+      case 145:
+      case 150:
+      case 151:
+      case 158:
+      case 172:
+      case 176:
+      case 199:
+      case 200:
+      case 201:
+      case 208:
+      case 210:
+      case 218:
+        return true;
+    } 
+    return false;
+  }
+  
+  public boolean isFlammable() {
+    if (!isBlock())
+      return false; 
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 6:
+      case 18:
+      case 19:
+      case 26:
+      case 27:
+      case 32:
+      case 33:
+      case 36:
+      case 47:
+      case 48:
+      case 54:
+      case 55:
+      case 59:
+      case 64:
+      case 65:
+      case 69:
+      case 73:
+      case 85:
+      case 86:
+      case 97:
+      case 100:
+      case 101:
+      case 107:
+      case 108:
+      case 126:
+      case 127:
+      case 135:
+      case 136:
+      case 137:
+      case 147:
+      case 152:
+      case 162:
+      case 163:
+      case 164:
+      case 165:
+      case 172:
+      case 176:
+      case 177:
+      case 178:
+      case 179:
+      case 184:
+      case 185:
+      case 186:
+      case 187:
+      case 188:
+      case 189:
+      case 190:
+      case 191:
+      case 192:
+      case 193:
+      case 194:
+      case 195:
+      case 196:
+      case 197:
+      case 198:
+        return true;
+    } 
+    return false;
+  }
+  
+  public boolean isBurnable() {
+    if (!isBlock())
+      return false; 
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 6:
+      case 18:
+      case 19:
+      case 32:
+      case 33:
+      case 36:
+      case 38:
+      case 39:
+      case 47:
+      case 48:
+      case 54:
+      case 86:
+      case 107:
+      case 108:
+      case 126:
+      case 127:
+      case 135:
+      case 136:
+      case 137:
+      case 162:
+      case 163:
+      case 164:
+      case 165:
+      case 171:
+      case 172:
+      case 174:
+      case 176:
+      case 184:
+      case 185:
+      case 186:
+      case 187:
+      case 188:
+      case 189:
+      case 190:
+      case 191:
+      case 192:
+      case 193:
+        return true;
+    } 
+    return false;
+  }
+  
+  public boolean isFuel() {
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 6:
+      case 7:
+      case 18:
+      case 26:
+      case 36:
+      case 48:
+      case 54:
+      case 55:
+      case 59:
+      case 66:
+      case 73:
+      case 85:
+      case 86:
+      case 97:
+      case 100:
+      case 101:
+      case 108:
+      case 127:
+      case 135:
+      case 136:
+      case 137:
+      case 144:
+      case 147:
+      case 152:
+      case 163:
+      case 164:
+      case 165:
+      case 172:
+      case 174:
+      case 184:
+      case 185:
+      case 186:
+      case 187:
+      case 188:
+      case 189:
+      case 190:
+      case 191:
+      case 192:
+      case 193:
+      case 260:
+      case 262:
+      case 267:
+      case 268:
+      case 269:
+      case 270:
+      case 279:
+      case 280:
+      case 289:
+      case 322:
+      case 323:
+      case 326:
+      case 332:
+      case 345:
+      case 368:
+      case 424:
+      case 426:
+      case 427:
+      case 428:
+      case 429:
+      case 430:
+      case 443:
+      case 444:
+      case 445:
+      case 446:
+      case 447:
+        return true;
+    } 
+    return false;
+  }
+  
+  public boolean isOccluding() {
+    if (!isBlock())
+      return false; 
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 8:
+      case 13:
+      case 14:
+      case 15:
+      case 16:
+      case 17:
+      case 18:
+      case 20:
+      case 22:
+      case 23:
+      case 24:
+      case 25:
+      case 26:
+      case 36:
+      case 42:
+      case 43:
+      case 44:
+      case 46:
+      case 48:
+      case 49:
+      case 50:
+      case 53:
+      case 57:
+      case 58:
+      case 59:
+      case 62:
+      case 63:
+      case 74:
+      case 75:
+      case 81:
+      case 83:
+      case 85:
+      case 87:
+      case 88:
+      case 89:
+      case 92:
+      case 98:
+      case 99:
+      case 100:
+      case 101:
+      case 104:
+      case 111:
+      case 113:
+      case 122:
+      case 124:
+      case 125:
+      case 126:
+      case 130:
+      case 134:
+      case 138:
+      case 154:
+      case 156:
+      case 159:
+      case 160:
+      case 163:
+      case 166:
+      case 167:
+      case 169:
+      case 171:
+      case 173:
+      case 174:
+      case 175:
+      case 180:
+      case 182:
+      case 202:
+      case 203:
+      case 205:
+      case 207:
+      case 211:
+      case 212:
+      case 214:
+      case 215:
+      case 216:
+      case 217:
+      case 236:
+      case 237:
+      case 238:
+      case 239:
+      case 240:
+      case 241:
+      case 242:
+      case 243:
+      case 244:
+      case 245:
+      case 246:
+      case 247:
+      case 248:
+      case 249:
+      case 250:
+      case 251:
+      case 252:
+      case 253:
+      case 254:
+        return true;
+    } 
+    return false;
+  }
+  
+  public boolean hasGravity() {
+    if (!isBlock())
+      return false; 
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 13:
+      case 14:
+      case 146:
+      case 253:
+        return true;
+    } 
+    return false;
+  }
+  
+  public boolean isItem() {
+    switch ($SWITCH_TABLE$org$bukkit$Material()[ordinal()]) {
+      case 9:
+      case 10:
+      case 11:
+      case 12:
+      case 27:
+      case 35:
+      case 37:
+      case 44:
+      case 52:
+      case 56:
+      case 60:
+      case 63:
+      case 64:
+      case 65:
+      case 69:
+      case 72:
+      case 75:
+      case 76:
+      case 84:
+      case 91:
+      case 93:
+      case 94:
+      case 95:
+      case 105:
+      case 106:
+      case 116:
+      case 118:
+      case 119:
+      case 120:
+      case 125:
+      case 126:
+      case 128:
+      case 133:
+      case 141:
+      case 142:
+      case 143:
+      case 145:
+      case 150:
+      case 151:
+      case 177:
+      case 178:
+      case 179:
+      case 182:
+      case 194:
+      case 195:
+      case 196:
+      case 197:
+      case 198:
+      case 205:
+      case 208:
+      case 210:
+      case 213:
+        return false;
+    } 
+    return true;
+  }
+}
+
+
+/* Location:              /disk/e/Programming/Java/Libraries/spigot/spigot-1.12.2-R0.1-SNAPSHOT-b1648.jar!/org/bukkit/Material.class
+ * Java compiler version: 7 (51.0)
+ * JD-Core Version:       1.0.7
+ */
