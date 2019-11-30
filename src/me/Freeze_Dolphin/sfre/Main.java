@@ -35,10 +35,12 @@ public final class Main extends JavaPlugin {
 			this.saveResource("material.enum", true);
 		}
 		
-		try {
-			Editor.main();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		if (cfg.getBoolean("enable")) {
+			try {
+				Editor.main();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 		
 	}
