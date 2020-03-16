@@ -1,7 +1,20 @@
-name: SlimefunRecipeEditor
-main: me.Freeze_Dolphin.sfre.Main
-version: 1.0
+name: SlimefunRecipeEditorRL
+main: me.Freeze_Dolphin.SlimefunRecipeEditorRL.Main
+version: 1.0.0
+
+author: Freeze_Dolphin
 
 depend: [CS-CoreLib, Slimefun]
 
-author: Freeze_Dolphin
+commands: 
+  sfre: 
+    alias: sfre
+    usage: /sfre <argument>
+    
+permissions: 
+  slimefunrecipeeditor.use: 
+    description: Allows you to use SlimefunRecipeEditor
+    default: op
+  slimefunrecipeeditor.reload: 
+    description: Allows you to reload config file
+    default: op
